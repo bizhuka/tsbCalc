@@ -2,7 +2,7 @@
 	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
 	<Dialog title="{name} - {currency} - {period} мес. - {rate} %">
 		<content>
-			<IconTabBar>
+			<IconTabBar expanded="{device>/isNoPhone}">
 				<items>
 					<IconTabFilter text="Частичное снятие">
 						<Text text="{withdraw}"/>
