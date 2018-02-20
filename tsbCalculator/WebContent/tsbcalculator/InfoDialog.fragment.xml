@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{name} - {currency} - {period} мес. - {rate} %">
+		<content>
+			<IconTabBar>
+				<items>
+					<IconTabFilter text="Частичное снятие">
+						<Text text="{withdraw}"/>
+					</IconTabFilter>
+					<IconTabFilter text="Досрочное расторжение">
+						<Text text="{early_dissolution}"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<buttons>
+			<Button text="OK" press="onClosePress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

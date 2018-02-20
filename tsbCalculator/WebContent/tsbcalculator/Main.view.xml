@@ -49,10 +49,10 @@
 							<Label text="Открытие / Пополнение" />
 						</Column>
 						<Column>
-							<Label text="Капитализация" />
+							<Label text="Накопление / Вознаграждение" />
 						</Column>
 						<Column>
-							<Label text="Накопление / Вознаграждение" />
+							<Label text="Капитализация" />
 						</Column>
 					</columns>
 					<items>
@@ -75,9 +75,7 @@
 							</VBox>
 							</cells>
 							<cells>
-								<CheckBox selected="{cap}" enabled="{cap_enabled}" />
-							</cells>
-							<cells>
+							    <VBox>
 								<ObjectIdentifier
 									title="{
 									  parts:[{path:'sum'},{path:'amount'},{path:'currency'},{path:'rate'},{path:'cap'},{path:'calc_type'},{path:'period'}],
@@ -88,6 +86,11 @@
 									  parts:[{path:'sum'},{path:'amount'},{path:'currency'},{path:'rate'},{path:'cap'},{path:'calc_type'},{path:'period'}],
 								      formatter: '.calculateAccSum'
 								    }" />
+								  <core:Icon src="sap-icon://hello-world" press="onInfoPress"/>
+								  </VBox>
+							</cells>
+							<cells>
+								<CheckBox selected="{cap}" enabled="{cap_enabled}" />
 							</cells>
 						</ColumnListItem>
 					</items>

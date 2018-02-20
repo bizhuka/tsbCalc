@@ -3,15 +3,14 @@ sap.ui.define([ 'jquery.sap.global', 'sap/ui/core/mvc/Controller',
 		function(jQuery, Controller, JSONModel) {
 			"use strict";
 
-			var currencyType = new sap.ui.model.type.Currency();
 			var PageController = Controller.extend("tsbcalculator.Main", {
 
 				onInit : function() {
-
-					// set explored app's demo model on this sample
-					var oModel = new JSONModel(jQuery.sap.getModulePath(
-							"program.root", "/data.json"));
-					this.getView().setModel(oModel);
+					// from json file
+					var oModel = new JSONModel(jQuery.sap.getModulePath("program.root", "/data.json"));
+					//this.getView().setModel(oModel);
+					// Set for all
+					sap.ui.getCore().setModel(oModel);
 				},
 
 				format_currency : function(value, currency) {
@@ -36,9 +35,21 @@ sap.ui.define([ 'jquery.sap.global', 'sap/ui/core/mvc/Controller',
 					return Math.round(value).toLocaleString() + " " + currency;
 				},
 				
-				what : function(){
-					return "what"
+			    _oDialog: null,
+				onInfoPress : function(oEvent){
+				      var oSelectedItem = oEvent.getSource().getParent();
+				      var oBindingContext = oSelectedItem.getBindingContext();
+				      if (!this._oDialog) 
+				        this._oDialog = sap.ui.xmlfragment("tsbcalculator.InfoDialog", this);
+				      
+				      this._oDialog.setBindingContext(oBindingContext);
+				      this._oDialog.open();
 				},
+				
+			    onClosePress: function(oEvent){
+			        var oDialog = oEvent.getSource().getParent();
+			        oDialog.close();
+			    },
 				
 				calculateSum : function(open_sum, amount, currency, rate, cap, year_days, month) {
 					  return this.calculate(open_sum, amount, currency, rate, cap, year_days, month, "sum")
