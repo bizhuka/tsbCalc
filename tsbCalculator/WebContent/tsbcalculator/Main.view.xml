@@ -1,0 +1,98 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="tsbcalculator.Main" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Депозитный калькулятор" showHeader="false">
+		<content>
+			<VBox>
+				<HBox>
+					<VBox>
+						<Label text="Название депозита:" labelFor="id_dep_name" />
+						<ComboBox id="id_dep_name" selectionChange="onSelectionChange"
+							items="{
+							path: '/name'
+						}">
+							<core:Item key="{name}" text="{name}" />
+						</ComboBox>
+					</VBox>
+					<VBox>
+						<Label text="Валюта:" labelFor="id_currency" />
+						<ComboBox id="id_currency" selectionChange="onSelectionChange"
+							items="{
+								path: '/currency',
+								sorter: { path: 'key' }
+							}">
+							<core:Item key="{key}" text="{text}" />
+						</ComboBox>
+					</VBox>
+					<VBox>
+						<Label text="Период:" labelFor="id_period" />
+						<ComboBox id="id_period" selectionChange="onSelectionChange"
+							items="{
+								path: '/period'
+							}">
+							<core:Item key="{num}" text="{num}" />
+						</ComboBox>
+					</VBox>
+				</HBox>
+
+				<Table id="id_alv" inset="false"
+					items="{
+			          path: '/main'
+			        }">
+					<columns>
+						<Column>
+							<Label text="Имя / MIN" />
+						</Column>
+						<Column>
+							<Label text="Месяц / %" />
+						</Column>
+						<Column>
+							<Label text="Открытие / Пополнение" />
+						</Column>
+						<Column>
+							<Label text="Капитализация" />
+						</Column>
+						<Column>
+							<Label text="Накопление / Вознаграждение" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier title="{name}"
+								                  text="{
+														parts:[{path:'minimum_sum'},{path:'currency'}],
+													    formatter: '.format_currency'
+												  }" />
+							</cells>
+							<cells>
+								<ObjectIdentifier title="{period} мес."
+								                  text="{rate} %" />
+							</cells>
+							<cells>
+							 <VBox>
+								<Input type="Number" value="{sum}" />
+								<Input type="Number" value="{amount}" enabled="{amount_enabled}" />
+							</VBox>
+							</cells>
+							<cells>
+								<CheckBox selected="{cap}" enabled="{cap_enabled}" />
+							</cells>
+							<cells>
+								<ObjectIdentifier
+									title="{
+									  parts:[{path:'sum'},{path:'amount'},{path:'currency'},{path:'rate'},{path:'cap'},{path:'calc_type'},{path:'period'}],
+								      formatter: '.calculateSum'
+								    }" 
+								
+									text="{
+									  parts:[{path:'sum'},{path:'amount'},{path:'currency'},{path:'rate'},{path:'cap'},{path:'calc_type'},{path:'period'}],
+								      formatter: '.calculateAccSum'
+								    }" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</core:View>

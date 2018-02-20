@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+
+<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js" id="sap-ui-bootstrap"
+	data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+	data-sap-ui-resourceroots='{"program.root": "./"}'	
+	data-sap-ui-xx-bindingSyntax="complex">
+	
+</script>
+<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme  -->
+<!--resources/sap-ui-core.js -->
+
+<script>
+	sap.ui.localResources("tsbcalculator");
+	var app = new sap.m.App({
+		initialPage : "idMain1"
+	});
+	var page = sap.ui.view({
+		id : "idMain1",
+		viewName : "tsbcalculator.Main",
+		type : sap.ui.core.mvc.ViewType.XML
+	});
+	app.addPage(page);
+	app.placeAt("content");
+</script>
+
+</head>
+<body class="sapUiBody" role="application">
+	<div id="content"></div>
+</body>
+</html>
